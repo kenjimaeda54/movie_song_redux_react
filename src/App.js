@@ -1,6 +1,7 @@
 import "./styles.css";
 import MoviePlaylist from "./components/MoviePlaylist";
 import SongPlaylist from "./components/SongPlaylist";
+import "./store/config"
 
 export default function App() {
   const handleResetClick = () => {
