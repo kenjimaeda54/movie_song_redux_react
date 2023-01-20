@@ -1,46 +1,49 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit"
 
 
-
-const songSlicker = createSlice({
-  initialState: [],
+const songSlicer = createSlice({
   name: "song",
+  initialState: [],
   reducers: {
     addSong(state, action) {
       state.push(action.payload)
     },
-
-    removeSong() {
+    removeSong(state, action) {
 
     }
   }
-
 })
 
 
 const store = configureStore({
+
+  //este nome song sera que vai aparecer no objeto 
+  // {songs                             xx              : []}
   reducer: {
-
-    //este nome song sera que vai aparecer no objeto 
-    // {song: []}
-    song: songSlicker.reducer
+    songs: songSlicer.reducer
   }
+
 })
 
-const currentSong = store.getState()
-console.log(currentSong)
+//não esquecer de adicionar o Provider na hirarquia maior
+export { store }
+export const { addSong } = songSlicer.actions
 
 
-store.dispatch({
-  //song e nome que esta no slice
-  //addSong e a função
-  type: "song/addSong",
-  payload: "New song"
-})
+//exemplo interessante
+// //vejo o valor atual do state
+// const currentSongOne = store.getState()
+// console.log(currentSongOne)
 
 
-const songBeforeAdd = store.getState()
-console.log(songBeforeAdd)
+// store.dispatch({
+//   //song e nome que esta no slice
+//   //addSong e a função
+//   type: "song/addSong",
+//   payload: "New Song"
+// })
 
 
-
+// const currentSongTwo = store.getState()
+// console.log(currentSongOne)
+// console.log(currentSongTwo)

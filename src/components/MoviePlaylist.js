@@ -1,13 +1,14 @@
 import { createRandomMovie } from "../data";
 
+
 function MoviePlaylist() {
+
   // To Do:
   // Get list of movies
   const moviePlaylist = [];
 
   const handleMovieAdd = (movie) => {
-    // To Do:
-    // Add movie to list of movies
+
   };
   const handleMovieRemove = (movie) => {
     // To Do:

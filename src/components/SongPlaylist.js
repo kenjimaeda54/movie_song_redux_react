@@ -1,14 +1,20 @@
 import { createRandomSong } from "../data";
+import { useDispatch, useSelector } from "react-redux"
+import { addSong } from "../store/config";
 
 function SongPlaylist() {
-  // To Do:
-  // Get list of songs
-  const songPlaylist = [];
+  const dispatch = useDispatch()
+
+
+  //aqui retorna um objeto {songs: value}
+  //retorna a chave song porque meu reducer em configureStore e song
+  const songPlaylist = useSelector((state) => state.songs);
 
   const handleSongAdd = (song) => {
-    // To Do:
-    // Add song to list of songs
+    dispatch(addSong(song))
   };
+
+
   const handleSongRemove = (song) => {
     // To Do:
     // Remove song from list of songs
