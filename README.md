@@ -1,24 +1,26 @@
-# Filmes e sons
-Pequeno projeto como todo para adicionar sons e filmes
+# Filmes e Sons
+# Pequeno projeto, similar ao Todo, para adicionar sons e filmes
 
-## Motivacao
-Relembrar conceitos de redux, gerenciador que um tempo nao uso
+## Motivação
+Relembrar conceitos de redux, gerenciador que um tempo não uso
 
 
 ## Feature
 - Usei  [redux toolkit](https://redux-toolkit.js.org/)
-- Ele possui algumas vantagems como immer assim todos os dados sao imutaveis
-- Com ele segui uma abordagem que diminiu bastante o boilerplate para construir a logica
-- Nao precisei usar um switch gigante para detmerinar o tipo e acaao
-- No index do diretorio de store eu centralizo todos a logica do redux ou seja eu crio o store e exporto os redurces e actions neste direotiro
-- Reducer dentro de configureStore seriam os nossos redurecs que sao criados a partir de slice
-- A logica e bem simples eu referencio meu arquivo que creiei o slicer em reducer
-- Para criar um slicer eu preciso do valor initial e o nome dele, ambos sao essenciais
-- Com o valor inicial eu vou receber por callback em state, ou seja no meu exemplo e um array,entao meu state sempre havera metodos de array, em extraReducer eu criei para retornar o meu estado ao valor inicial nesse caso simplemente retornei um array vazio []
-- Por usar immer por debaixo dos panos utilizar abordagem de retornar uma array vazio ja suficiente para zerar meu estado
+- Ele possui algumas vantagens como immer assim todos os dados são mutaveis
+-  Com essa lib conseguimos usar  uma abordagem que diminui bastante o boilerplate  
+- Não precisei usar um switch gigante para determinar o tipo e acação
+- No index do diretório de store eu centralizo todos a lógica do redux, ou seja, eu crio o store é exporto os redurces e actions 
+- Reducer dentro de configureStore seriam os nossos redurecs que são criados a partir de slice
+- A lógica e bem simples, referencio meu arquivo que criei o slicer em reducer
+- Para criar um slicer eu preciso do valor initial e o nome dele, ambos são essenciais
+- Valor do reducer    recebo por callback em state,   no meu exemplo e um array, porque meu valor inicial e um array, se fosse inteiro seria número e por ai diante.
+- Para retornar meu reducer no valor inicial, ou seja vazio, simplesmente dentro de extraReducer retorno um array vazio, motivo que usamos immer por de baixo dos pano.
+- Por  redux toolkit por debaixo dos panos utilizar immer  retorna uma array vazio já suficiente para zerar meu estado
 - Payload e o valor que vou receber via dispatch
-- ExtraReducers e ideal para centralizar logicas que iram inferir em mais de um slicer como no caso de resetar era feito tanto no movieSlicer como songSlicer 
-- Nome colocado no reducer dentro do configureStore e o nome que depois iremos acessar por exemplo state.songs,state.movies
+- ExtraReducers e ideal para centralizar logicas que iram inferir em mais de um slicer c
+- Esse exemplo era para  resetar  movieSlicer e  songSlicer 
+- Nome colocado no reducer dentro do configureStore e o nome que depois iremos acessar, por exemplo: state.songs,state.movies
 
 ```javascript
 
@@ -48,7 +50,6 @@ const store = configureStore({
 
 })
 
-//não esquecer de adicionar o Provider na herarquia maior
 export { store, addMovie, addSong, removeMovie, removeSong, reset }
 
 
@@ -85,13 +86,13 @@ export const movieReducer = movieSlicer.reducer
 
 
 ## 
-- Como dito anteriormente nao preciso criar um swith para demtinar em qual arquivo sera disparado o distpach
-- Para auxiliar nessa conexao do arquivo de logica do redux com os componentes do react usei o [react redux](https://react-redux.js.org/)
-- Para disparar o trigger para a funcao correta do redux ustilizo o useDispatch e envolvo a funcao que exportei do actions 
-- Reapara que exporeite dusa funcoes uma para adicionar som e outra remover o som
-- Ao usar dispatch(addSong(song)) ja estou adicionando o valor no redux
-- Com essa abordagem diminuo muito a questao de boilerplate pois cada funcao tem seu slicer bem definido e sao exportados pelos respectivos actions
-- Para caputar esse valor inserido uso o useSelector nele por calback eu tenho o retorno do state, nesse caso e songs porque dentro de configure store e songs nome
+- Como dito anteriormente não preciso criar um swith para demtinar em qual arquivo sera disparado o distpach
+- Para auxiliar nessa conexão do arquivo de lógica do redux com os componentes do react usei o [react redux](https://react-redux.js.org/)
+- Para disparar o trigger para a função correta do redux utilizo o useDispatch é envolvo a função que exportei dos arquivos de slicers 
+- Reapara que exportei  duas funções uma para adicionar som e outra remover o som
+- Ao usar dispatch(addSong(song)) já estou adicionando o valor no redux
+- Com essa abordagem diminuo muito a questão de boilerplate, pois cada função tem seu slicer bem definido sendo exportados pelos respectivos actions
+- Para caputar esse valor inserido uso o useSelector nele por calback eu tenho o retorno do state, nesse caso e songs porque dentro de configureStore  nome do recucer e songs
 
 
 
@@ -213,9 +214,7 @@ export { store, addMovie, addSong, removeMovie, removeSong, reset }
 
 ##
 - Para limpar criamos uma action e compartilhamos ela nos dois slicers assim limparei tando o reducer de song quanto de movie
-- Ao disparar a funcao reset ele limpara os dois reducer tanto de song quanto de movie
-
-
+- Ao disparar a função reset ele limpara os dois reducer tanto de song quanto de movie
 
 
 ``` javascript
@@ -253,8 +252,6 @@ export default function App() {
 
 // action
 import { createAction } from "@reduxjs/toolkit"
-
-
 export const reset = createAction("app/reset")
 
 
