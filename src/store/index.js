@@ -1,33 +1,23 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit"
-
-
-const songSlicer = createSlice({
-  name: "song",
-  initialState: [],
-  reducers: {
-    addSong(state, action) {
-      state.push(action.payload)
-    },
-    removeSong(state, action) {
-
-    }
-  }
-})
+import { configureStore } from "@reduxjs/toolkit"
+import { reset } from "./actions/geral"
+import { addMovie, removeMovie, movieReducer } from "./slices/movieSlicer"
+import { addSong, removeSong, songReducer } from "./slices/songSlicer"
 
 
 const store = configureStore({
 
   //este nome song sera que vai aparecer no objeto 
-  // {songs                             xx              : []}
+  // {songs: []}
   reducer: {
-    songs: songSlicer.reducer
+    songs: songReducer,
+    movies: movieReducer,
   }
 
 })
 
-//não esquecer de adicionar o Provider na hirarquia maior
-export { store }
-export const { addSong } = songSlicer.actions
+//não esquecer de adicionar o Provider na herarquia maior
+export { store, addMovie, addSong, removeMovie, removeSong, reset }
+
 
 
 //exemplo interessante

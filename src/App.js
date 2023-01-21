@@ -1,11 +1,15 @@
+import { useDispatch } from "react-redux"
 import "./styles.css";
 import MoviePlaylist from "./components/MoviePlaylist";
 import SongPlaylist from "./components/SongPlaylist";
-import "./store/config"
+import { reset } from "./store";
 
 export default function App() {
+  const dispatch = useDispatch()
+
+
   const handleResetClick = () => {
-    //
+    dispatch(reset())
   };
 
   return (
